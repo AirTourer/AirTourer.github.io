@@ -25,3 +25,25 @@
   description: "Web-readable version of the Airtourer maintenance, repair, and overhaul manual"
   category: maintenance
   path: /docs/Airtourer Maintenance Manual.md
+
+- title: "Airtourer T6 - CAA Approved Flight Manual and POH"
+  description: "CAA approved flight manual and pilot's operating handbook for the Airtourer T6 (Document AIR 2792)"
+  category: flight-manual
+  path: /docs/Airtourer T6 - CAA Approved Flight Manual and POH.pdf
+  viewer: /view/airtourer-t6-flight-manual/
+
+- title: "Airtourer T6 - Flight Manual and POH (Markdown)"
+  description: "Web-readable version of the CAA approved flight manual and pilot's operating handbook for the Airtourer T6"
+  category: flight-manual
+  path: /docs/Airtourer T6 - CAA Approved Flight Manual and POH.md
+
+- title: "Airworthiness Directive Schedule - NZ Aerospace Airtourer Series"
+  description: "Airworthiness directive schedule for NZ Aerospace Airtourer series aircraft, issued by the Civil Aviation Authority of New Zealand (26 October 2000)"
+  category: airworthiness
+  path: /docs/Airworthiness Directive Schedule - NZ Aerospace Airtourer Series.pdf
+  viewer: /view/airworthiness-directive-schedule/
+
+- title: "Airworthiness Directive Schedule (Markdown)"
+  description: "Web-readable version of the airworthiness directive schedule for NZ Aerospace Airtourer series aircraft"
+  category: airworthiness
+  path: /docs/Airworthiness Directive Schedule - NZ Aerospace Airtourer Series.md
