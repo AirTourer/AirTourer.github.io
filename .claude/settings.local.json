@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git config:*)",
+      "Bash(git:*)",
+      "WebFetch(domain:www.airtourer.asn.au)",
+      "WebFetch(domain:docs.github.com)",
+      "WebFetch(domain:pages.github.com)",
+      "WebFetch(domain:jekyllrb.com)"
+    ]
+  }
+}

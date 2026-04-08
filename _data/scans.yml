@@ -1,0 +1,14 @@
+# Registry of 3D scan images.
+# Add entries here and place scan files in the scans/ directory.
+#
+# Fields:
+#   title:       Display title
+#   description: Short description
+#   path:        Path to the full-resolution scan file
+#   thumbnail:   Path to a thumbnail image (recommended ~400px wide)
+#
+# Example:
+# - title: "Wing Root Fitting"
+#   description: "3D scan of the wing root attachment fitting, starboard side"
+#   path: /scans/wing-root-fitting/scan-full.jpg
+#   thumbnail: /scans/wing-root-fitting/thumbnail.jpg

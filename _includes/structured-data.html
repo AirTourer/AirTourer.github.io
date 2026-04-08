@@ -1,0 +1,29 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}{{ site.baseurl }}/",
+  "description": "{{ site.description }}"
+}
+</script>
+{% if page.url == "/" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "AirTourer Technical Documents",
+  "description": "Technical documents, manuals, and 3D scans for AirTourer aircraft maintenance",
+  "itemListElement": [
+    {% for doc in site.docs %}
+    {
+      "@type": "ListItem",
+      "position": {{ forloop.index }},
+      "url": "{{ site.url }}{{ doc.url }}",
+      "name": "{{ doc.title }}"
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}

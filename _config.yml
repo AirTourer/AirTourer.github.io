@@ -1,0 +1,34 @@
+title: "AirTourer Technical Resources"
+description: "Technical documents, maintenance manuals, service bulletins, and 3D scans for AirTourer aircraft"
+url: "https://airtourer.github.io"
+baseurl: ""
+
+theme: minima
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+collections:
+  docs:
+    output: true
+    permalink: /docs/:slug/
+
+defaults:
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "doc"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - .claude
+  - "*.bat"
+  - "*.sh"

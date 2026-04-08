@@ -1,0 +1,27 @@
+# Registry of PDF documents.
+# Add entries here and place the PDF file in the docs/ directory.
+#
+# Fields:
+#   title:       Display title
+#   description: Short description shown in the listing
+#   category:    Grouping category (e.g. maintenance, service-bulletin, airworthiness)
+#   path:        Path to the PDF file relative to site root
+#   viewer:      (optional) Path to a viewer page for in-browser reading
+#
+# Example:
+# - title: "Maintenance Manual"
+#   description: "Complete maintenance manual for AirTourer T3 and T4 series"
+#   category: maintenance
+#   path: /docs/maintenance-manual.pdf
+#   viewer: /view/maintenance-manual/
+
+- title: "Airtourer Maintenance Manual"
+  description: "Complete maintenance, repair, and overhaul manual for Airtourer aircraft (Reprint March 2007)"
+  category: maintenance
+  path: /docs/Airtourer Maintenance Manual.pdf
+  viewer: /view/airtourer-maintenance-manual/
+
+- title: "Airtourer Maintenance Manual (Markdown)"
+  description: "Web-readable version of the Airtourer maintenance, repair, and overhaul manual"
+  category: maintenance
+  path: /docs/Airtourer Maintenance Manual.md
