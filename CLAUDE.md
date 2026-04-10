@@ -17,30 +17,47 @@ This is **AirTourer.github.io**, a Jekyll-based GitHub Pages site hosted at `htt
 
 ### Content Model
 
-There are two types of content, each managed differently:
+Each document is a single entity with multiple format representations, managed through the `_docs/` Jekyll collection.
 
-1. **Markdown documents** (`_docs/` collection) — rendered as full HTML pages. Each `.md` file has YAML front matter with `title`, `description`, `category`, and `date`. These get their own URL at `/docs/:slug/` and appear in the sitemap automatically.
+A document entry in `_docs/` is a `.md` file with YAML front matter containing:
+- `title`, `description`, `category`, `date` — standard metadata
+- `original_pdf` — path to the original scanned PDF (e.g. `/documents/{slug}/original.pdf`)
+- `clean_pdf` — path to a clean regenerated PDF (when available)
+- `conversion_status` — `complete` or `pending` (whether markdown conversion is done)
+- Optional: `aircraft`, `document_id`, `source`
 
-2. **Static files** (PDFs in `docs/`, scans in `scans/`) — listed via data files, not rendered. Metadata for these is maintained in `_data/documents.yml` and `_data/scans.yml` which map filenames to display titles, descriptions, and categories.
+The markdown body is the web-readable version of the document. For documents pending conversion, the body contains a placeholder.
 
 ### Key Directories
 
-- `_layouts/` — page templates: `default.html` (base shell), `doc.html` (markdown documents), `pdf-viewer.html` (in-browser PDF viewing), `page.html` (generic pages)
+- `_docs/` — Jekyll collection: one `.md` file per document (single source of truth for the catalogue)
+- `documents/` — static assets: one subdirectory per document containing `original.pdf`, `clean.pdf`, and `images/`
+- `_layouts/` — page templates: `default.html` (base shell), `doc.html` (documents with format bar), `pdf-viewer.html` (in-browser PDF viewing), `page.html` (generic pages)
 - `_includes/` — reusable partials: `nav.html`, `structured-data.html` (JSON-LD SEO markup)
-- `_docs/` — Jekyll collection for markdown technical documents
-- `_data/` — YAML data files: `documents.yml` (PDF registry), `scans.yml` (3D scan registry)
-- `docs/` — static PDF files (not prefixed with underscore, so served directly)
-- `scans/` — 3D scan image files
+- `_data/` — YAML data files: `scans.yml` (3D scan registry)
+- `originals/` — raw archive of source PDFs (excluded from Jekyll build)
+- `pictures/` — photo archive (excluded from Jekyll build)
 - `assets/css/style.css` — all site styles (no CSS framework)
-- `assets/js/main.js` — minimal JS (mobile nav toggle only)
+- `assets/js/main.js` — JS for mobile nav toggle and catalogue category filter
 
 ### Adding Content
 
-**Markdown document:** Create a `.md` file in `_docs/` with front matter (`title`, `description`, `category`, `date`). It appears in listings and sitemap automatically.
+**New document (with PDF):**
+1. Create a subdirectory in `documents/` using a slug name (e.g. `documents/my-document/`)
+2. Place the original PDF as `documents/my-document/original.pdf`
+3. Create `_docs/my-document.md` with front matter including `original_pdf: /documents/my-document/original.pdf` and `conversion_status: pending`
+4. Once converted to markdown, replace the placeholder body and set `conversion_status: complete`
+5. If a clean PDF is generated, place it as `documents/my-document/clean.pdf` and add `clean_pdf` to front matter
 
-**PDF:** Place the file in `docs/` and add an entry to `_data/documents.yml` with title, description, category, and path.
+**Document categories:** `maintenance`, `flight-manual`, `airworthiness`, `parts`, `service-bulletin`, `certification`, `reference`
 
 **3D scan:** Place files in `scans/` and add an entry to `_data/scans.yml` with title, description, path, and thumbnail path.
+
+### URL Structure
+
+- `/docs/{slug}/` — web-readable document page (rendered markdown)
+- `/documents/{slug}/original.pdf` — original scanned PDF (direct download)
+- `/documents/{slug}/clean.pdf` — clean regenerated PDF (direct download)
 
 ### SEO
 

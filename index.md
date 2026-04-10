@@ -11,51 +11,42 @@ description: "Technical documents, maintenance manuals, service bulletins, and 3
 </section>
 
 <section id="documents" class="file-section">
-  <h2>Technical Documents</h2>
+  <h2>Document Catalogue</h2>
 
   {% assign categories = site.docs | map: "category" | uniq | sort %}
 
   {% if site.docs.size > 0 %}
+  <div class="catalogue-filter">
+    <span class="filter-label">Filter by category:</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    {% for cat in categories %}
+    <button class="filter-btn" data-filter="{{ cat }}">{{ cat | replace: '-', ' ' | capitalize }}</button>
+    {% endfor %}
+  </div>
+
   {% for cat in categories %}
-  <h3 class="category-heading">{{ cat | capitalize }}</h3>
+  <div class="category-group" data-category="{{ cat }}">
+  <h3 class="category-heading">{{ cat | replace: '-', ' ' | capitalize }}</h3>
   <div class="file-list">
-    {% assign cat_docs = site.docs | where: "category", cat %}
+    {% assign cat_docs = site.docs | where: "category", cat | sort: "title" %}
     {% for doc in cat_docs %}
     <div class="file-card">
       <div class="file-info">
         <h4><a href="{{ doc.url | relative_url }}">{{ doc.title }}</a></h4>
         {% if doc.description %}<p>{{ doc.description }}</p>{% endif %}
-        {% if doc.date %}<time datetime="{{ doc.date | date_to_xmlschema }}">{{ doc.date | date: "%d %B %Y" }}</time>{% endif %}
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  {% endfor %}
-  {% endif %}
-
-  {% if site.data.documents.size > 0 %}
-  {% assign pdf_categories = site.data.documents | map: "category" | uniq | sort %}
-  {% for cat in pdf_categories %}
-  <h3 class="category-heading">{{ cat | capitalize }}</h3>
-  <div class="file-list">
-    {% assign cat_pdfs = site.data.documents | where: "category", cat %}
-    {% for item in cat_pdfs %}
-    <div class="file-card">
-      <div class="file-info">
-        <h4>{{ item.title }}</h4>
-        {% if item.description %}<p>{{ item.description }}</p>{% endif %}
       </div>
       <div class="file-actions">
-        {% if item.viewer %}<a href="{{ item.viewer | relative_url }}" class="btn btn-view">View</a>{% endif %}
-        <a href="{{ item.path | relative_url }}" download class="btn btn-download">Download</a>
+        {% if doc.conversion_status == "complete" %}<span class="badge badge-web">Web</span>{% endif %}
+        {% if doc.original_pdf %}<a href="{{ doc.original_pdf | relative_url }}" class="btn btn-download">Original PDF</a>{% endif %}
+        {% if doc.clean_pdf %}<a href="{{ doc.clean_pdf | relative_url }}" class="btn btn-download">Clean PDF</a>{% endif %}
+        {% if doc.conversion_status == "pending" and doc.original_pdf %}<span class="badge badge-pending">Conversion pending</span>{% endif %}
       </div>
     </div>
     {% endfor %}
   </div>
+  </div>
   {% endfor %}
-  {% endif %}
-
-  {% if site.docs.size == 0 and site.data.documents.size == 0 %}
+  {% else %}
   <p class="empty-notice">No documents have been added yet. Check back soon.</p>
   {% endif %}
 </section>

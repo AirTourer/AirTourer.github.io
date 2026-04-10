@@ -6,11 +6,23 @@ layout: default
     <h1>{{ page.title }}</h1>
     {% if page.description %}<p class="doc-description">{{ page.description }}</p>{% endif %}
     <div class="doc-meta">
-      {% if page.category %}<span class="doc-category">{{ page.category }}</span>{% endif %}
+      {% if page.category %}<span class="doc-category">{{ page.category | replace: '-', ' ' }}</span>{% endif %}
       {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %B %Y" }}</time>{% endif %}
+      {% if page.conversion_status == "pending" %}<span class="doc-status doc-status-pending">Conversion pending</span>{% endif %}
     </div>
   </header>
+
+  {% if page.original_pdf or page.clean_pdf %}
+  <nav class="doc-formats" aria-label="Document formats">
+    <span class="doc-formats-label">Available formats:</span>
+    <span class="format-link format-link-active">Web</span>
+    {% if page.original_pdf %}<a href="{{ page.original_pdf | relative_url }}" class="format-link">Original PDF</a>{% endif %}
+    {% if page.clean_pdf %}<a href="{{ page.clean_pdf | relative_url }}" class="format-link">Clean PDF</a>{% endif %}
+  </nav>
+  {% endif %}
+
   {{ content }}
+
   <footer class="doc-footer">
     <a href="{{ '/' | relative_url }}">&larr; Back to all documents</a>
   </footer>

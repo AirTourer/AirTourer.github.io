@@ -32,3 +32,5 @@ exclude:
   - .claude
   - "*.bat"
   - "*.sh"
+  - originals
+  - pictures

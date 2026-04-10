@@ -6,7 +6,16 @@
       "WebFetch(domain:www.airtourer.asn.au)",
       "WebFetch(domain:docs.github.com)",
       "WebFetch(domain:pages.github.com)",
-      "WebFetch(domain:jekyllrb.com)"
+      "WebFetch(domain:jekyllrb.com)",
+      "Bash(curl -s -L --max-time 15 \"https://www.aviation.govt.nz/rules/civil-aviation-rules/\")",
+      "WebSearch",
+      "Bash(curl -s -L --max-time 15 \"https://www.aviation.govt.nz/aircraft/airworthiness/\")",
+      "Bash(curl -s -L --max-time 15 \"https://www.aviation.govt.nz/rules/advisory-circulars/\")",
+      "WebFetch(domain:www.aviation.govt.nz)",
+      "WebFetch(domain:www.casa.gov.au)",
+      "Bash(cp originals/CD/ServiceBulletinOriginals/*.pdf documents/service-bulletins/originals/)",
+      "Bash(cp originals/CD/ServiceBulletinReprints/*.pdf documents/service-bulletins/reprints/)",
+      "Read(//tmp/**)"
     ]
   }
 }
